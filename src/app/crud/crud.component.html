@@ -1,0 +1,33 @@
+<div class="crud-container">
+    <h2>Angular CRUD using Local Storage</h2>
+  
+    <!-- Input Form to Add or Update Item -->
+    <div class="input-form">
+      <input type="text" [(ngModel)]="itemName" placeholder="Enter item name" />
+      <button (click)="addOrUpdateItem()">
+        {{ currentItem ? 'Update' : 'Add' }} Item
+      </button>
+    </div>
+  
+    <!-- Display Items in a Table Format -->
+    <div *ngIf="items.length > 0" class="table-container">
+      <div class="table-header">
+        <div class="table-cell">Item Name</div>
+        <div class="table-cell">Actions</div>
+      </div>
+      <div *ngFor="let item of items" class="table-row">
+        <div class="table-cell">{{ item.name }}</div>
+        <div class="table-cell">
+          <button class="edit-btn" (click)="editItem(item)">Edit</button>
+          <button class="delete-btn" (click)="deleteItem(item)">Delete</button>
+        </div>
+      </div>
+      <button class="clear-btn" (click)="clearItems()">Clear All</button>
+    </div>
+  
+    <!-- Message when no items are present -->
+    <div *ngIf="items.length === 0">
+      <p>No items found. Add some items!</p>
+    </div>
+  </div>
+  
